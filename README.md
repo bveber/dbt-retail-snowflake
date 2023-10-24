@@ -210,10 +210,10 @@ unknown data quality issues.
 - Learn more about [the data](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy)
 - Learn more about [data preparation for time-series forecasting](https://towardsdatascience.com/preparing-data-for-time-series-analysis-cd6f080e6836)
 - Learn more about [DBT](https://www.getdbt.com/product/what-is-dbt/)
-- Learn more about [dbt-bigquery](https://docs.getdbt.com/reference/warehouse-setups/bigquery-setup)
+<!-- - Learn more about [dbt-bigquery](https://docs.getdbt.com/reference/warehouse-setups/bigquery-setup)
 - Learn more about [Google BigQuery](https://cloud.google.com/bigquery)
 - Learn more about [Google Dataproc Serverless](https://cloud.google.com/dataproc-serverless/docs)
 - Learn more about [Google Colab](https://research.google.com/colaboratory/faq.html)
-- Learn more about [darts](https://unit8.com/resources/darts-time-series-made-easy-in-python/)
+- Learn more about [darts](https://unit8.com/resources/darts-time-series-made-easy-in-python/) -->
 - Learn more about [Prophet](https://facebook.github.io/prophet/docs/quick_start.html)
 - Learn more about [pypark pandas_udf](https://spark.apache.org/docs/3.1.2/api/python/reference/api/pyspark.sql.functions.pandas_udf.html)
