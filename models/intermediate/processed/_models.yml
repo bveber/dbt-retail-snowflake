@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: int__iowa_liquor_sales
+    description: >
+      The intermediate table that renames columns. The source data uses 
+      title casing and white space and the renamed columns use snake casing.

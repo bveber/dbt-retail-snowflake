@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: stg__iowa_liquor_sales
+    description: >
+      The staging table that pulls in the data from the publicly shared dataset.
+      Refer to the [Iowa Gov data website](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy) 
+      for more details

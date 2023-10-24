@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: int__monthly_category_sales
+    description: >
+      Monthly sales for each store-category
+    columns:
+      - name: store_number
+        description: '{{ doc("store_number") }}'
+        data_type: string
+      - name: store_name
+        description: '{{ doc("store_name") }}'
+        data_type: string
+      - name: category
+        description: '{{ doc("category") }}'
+        data_type: string
+      - name: category_name
+        description: '{{ doc("category_name") }}'
+        data_type: string
+
+      - name: num_purchases
+        description: '{{ doc("num_purchases") }}'
+        data_type: integer
+      - name: num_unique_items
+        description: '{{ doc("num_unique_items") }}'
+        data_type: integer
+      - name: total_sales
+        description: '{{ doc("total_sales") }}'
+        data_type: float
+      - name: total_gallons
+        description: '{{ doc("total_gallons") }}'
+        data_type: float
+      - name: total_liters
+        description: '{{ doc("total_liters") }}'
+        data_type: float
+
+      - name: sales_month
+        description: '{{ doc("sales_month") }}'
+        data_type: date
+
+  # - name: int__monthly_category_sales_filled_missing_dates
+  #   description: >
+  #     Monthly sales for each store-category with all missing each store-category
+  #     combinations in a monthly time-interval filled with zeros.
+  #   columns:
+  #     - name: store_number
+  #       description: '{{ doc("store_number") }}'
+  #       data_type: string
+  #     - name: store_name
+  #       description: '{{ doc("store_name") }}'
+  #       data_type: string
+  #     - name: category
+  #       description: '{{ doc("category") }}'
+  #       data_type: string
+  #     - name: category_name
+  #       description: '{{ doc("category_name") }}'
+  #       data_type: string
+  #     - name: num_purchases
+  #       description: '{{ doc("num_purchases") }}'
+  #       data_type: integer
+  #     - name: num_unique_items
+  #       description: '{{ doc("num_unique_items") }}'
+  #       data_type: integer
+  #     - name: total_sales
+  #       description: '{{ doc("total_sales") }}'
+  #       data_type: float
+  #     - name: total_gallons
+  #       description: '{{ doc("total_gallons") }}'
+  #       data_type: float
+  #     - name: total_liters
+  #       description: '{{ doc("total_liters") }}'
+  #       data_type: float
+
+  #     - name: sales_month
+  #       description: '{{ doc("sales_month") }}'
+  #       data_type: date

@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: int__store_category_profiles
+    description: >
+      The profile describing each store-category
+    columns:
+      - name: store_number
+        description: '{{ doc("store_number") }}'
+        data_type: string
+      - name: store_name
+        description: '{{ doc("store_name") }}'
+        data_type: string
+      - name: category
+        description: '{{ doc("category") }}'
+        data_type: string
+      - name: category_name
+        description: '{{ doc("category_name") }}'
+        data_type: string
+      - name: num_months
+        description: '{{ doc("num_months") }}'
+        data_type: integer
+      - name: min_date
+        description: '{{ doc("min_date") }}'
+        data_type: date
+      - name: max_date
+        description: '{{ doc("max_date") }}'
+        data_type: date
+
+  - name: int__store_profiles
+    description: >
+      The profile describing each store
+    columns:
+      - name: store_number
+        description: '{{ doc("store_number") }}'
+        data_type: string
+      - name: store_name
+        description: '{{ doc("store_name") }}'
+        data_type: string
+      - name: num_months
+        description: '{{ doc("num_months") }}'
+        data_type: integer
+      - name: min_date
+        description: '{{ doc("min_date") }}'
+        data_type: date
+      - name: max_date
+        description: '{{ doc("max_date") }}'
+        data_type: date
+      - name: num_unique_categories
+        description: '{{ doc("num_unique_categories") }}'
+      - name: num_unique_items
+        description: '{{ doc("num_unique_items") }}'
+      - name: total_sales
+        description: '{{ doc("total_sales") }}'
+      - name: total_gallons
+        description: '{{ doc("total_gallons") }}'
+      - name: total_liters
+        description: '{{ doc("total_liters") }}'
+      

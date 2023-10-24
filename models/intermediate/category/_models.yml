@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: int__category_profiles
+    description: >
+      A profile describing each category in the entire dataset
+    columns:
+      - name: category
+        description: '{{ doc("category") }}'
+        data_type: string
+        tests:
+          - unique
+      - name: num_names
+        description: The number of unique names
+        data_type: integer
+      - name: category_name
+        description: '{{ doc("category_name") }}'
+        data_type: string
+      # - name: top_five_names
+      #   description: The five most commonly used names
+      #   data_type: record
+      - name: num_unique_items
+        description: '{{ doc("num_unique_items") }}'
+        data_type: integer
+      - name: num_unique_stores
+        description: The number of unique stores
+        data_type: integer
+      - name: total_sales
+        description: '{{ doc("total_sales") }}'
+        data_type: float
+      - name: total_gallons
+        description: '{{ doc("total_gallons") }}'
+        data_type: float
+
+  # - name: int__category_profiles_by_month
+  #   description: >
+  #     A profile describing each category by month
+  #   columns:
+  #     - name: category
+  #       description: '{{ doc("category") }}'
+  #       data_type: string
+  #     - name: sales_month
+  #       description: '{{ doc("sales_month") }}'
+  #       data_type: date
+  #     - name: category_name
+  #       description: '{{ doc("category_name") }}'
+  #       data_type: string
+  #     - name: num_unique_items
+  #       description: '{{ doc("num_unique_items") }}'
+  #       data_type: integer
+  #     - name: num_unique_stores
+  #       description: The number of unique stores
+  #       data_type: integer
+  #     - name: total_sales
+  #       description: '{{ doc("total_sales") }}'
+  #       data_type: float
+  #     - name: total_gallons
+  #       description: '{{ doc("total_gallons") }}'
+  #       data_type: float
