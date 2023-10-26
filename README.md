@@ -22,15 +22,14 @@ data that is easier to work with.
 We are using [DBT](https://www.getdbt.com/product/what-is-dbt/) to define a number of transformations
 required to prepare raw transactional data for a many-models time-series forecasting implementation.
 The source data for this project is available as a public-facing
-[BigQuery table](https://console.cloud.google.com/marketplace/details/iowa-department-of-commerce/iowa-liquor-sales),
-therefore this project uses the [dbt-bigquery adapter](https://docs.getdbt.com/reference/warehouse-setups/bigquery-setup).
+<!-- [BigQuery table](https://console.cloud.google.com/marketplace/details/iowa-department-of-commerce/iowa-liquor-sales),
+therefore this project uses the [dbt-bigquery adapter](https://docs.getdbt.com/reference/warehouse-setups/bigquery-setup). -->
 The raw data is transformed via BigQuery tables and views before a
 [python model](https://docs.getdbt.com/docs/build/python-models) uses a package called
 [dart](https://unit8co.github.io/darts/) to generate the time-series forecasts. The python models are run in the backend using
-[Dataproc Serverless](https://cloud.google.com/dataproc-serverless/docs) via a custom container defined
-at `dockerfiles/minimal_python_ts` and are materialized as BigQuery tables.
+<!-- [Dataproc Serverless](https://cloud.google.com/dataproc-serverless/docs) via a custom container defined
+at `dockerfiles/minimal_python_ts` and are materialized as BigQuery tables. -->
 
-With the appetizer of product soup out of the way, let's dig into the main course.
 
 ## `DBT`
 
@@ -61,52 +60,20 @@ the `/models` directory.
 In DBT the most commonly used models are SQL-based transformations. Many Data Engineers and Analysts might
 only ever need this type of model. However, many ML pipelines require some amount of python processing.
 This can be done using the [python model](https://docs.getdbt.com/docs/build/python-models).
-DBT allows users to define python transformation via Spark jobs. With our BigQuery adapter
-we use [Google Dataproc](https://cloud.google.com/dataproc) to run our jobs.
+DBT allows users to define python transformation via [Snowpark](https://docs.snowflake.com/en/developer-guide/snowpark/index).
 
-### `dbt-bigquery adapter`
+### `dbt-snowflake adapter`
 
 DBT offers a number of connectors (Redshift, Databricks, Bigquery, etc.) but we will be using the
-BigQuery adapter for this project since the source data is already conveniently available in BigQuery. Review the
-[docs](https://docs.getdbt.com/reference/warehouse-setups/bigquery-setup) in order to setup this adapter and learn
+Snowflake adapter for this project. Review the
+[docs](https://docs.getdbt.com/docs/core/connect-data-platform/snowflake-setup) in order to setup this adapter and learn
 more about it.
 
-## `Dataproc backend`
+## `Snowflake backend`
 
-In Googles words: "Dataproc is a fully managed and highly scalable service for running Apache Hadoop,
-Apache Spark, Apache Flink, Presto, and 30+ open source tools and frameworks. Use Dataproc for
-data lake modernization, ETL, and secure data science, at scale, integrated with Google Cloud,
-at a fraction of the cost." They offer two modes of operation; fully-managed cluster or serverless.
 
-### `Dataproc cluster`
+### `Snowpark`
 
-Google offers the ability to create and maintain a full cluster for running your spark jobs
-and the documentation can be found [here](https://cloud.google.com/dataproc/docs/guides/create-cluster).
-But who wants to maintain a clusters? We both know you're going to forget to turn it off and curse the
-$10 bill you rack up while it sits idle overnight. For that reason this project has not been tested
-with a managed cluster.
-
-### `Dataproc serverless`
-
-Google offers the ability to spin up resources on demand for executing your spark jobs
-and the documentation can be found [here](https://cloud.google.com/dataproc-serverless/docs).
-Because of the intermittent execution of this project the serverless option is ideal. This
-product comes with a standard runtime that comes with unknown versions of the packages
-listed [here](https://cloud.google.com/dataproc-serverless/docs/guides/custom-containers#dockerfile).
-For this project we need additional packages for forecasting so we can't use the standard runtime
-and will use custom containers instead.
-
-#### `Custom containers`
-
-Google allows you to use a [custom container](https://cloud.google.com/dataproc-serverless/docs/guides/custom-containers)
-to execute your Dataproc Serverless jobs, enabling us to use our required forecasting packges. The docs show an example
-container and make a number of recommendations, but none of it is helpful. Ultimately, a stripped down image,
-containing the darts package and pyspark is used in this project. The images need to be build and pushed to
-[Artifact Repository](https://cloud.google.com/artifact-registry) for us to use it with our python models.
-
-Note: as of dbt-biguery version 1.5.0b4 custom containers are not supported. However, this is possible using
-this [fork](https://github.com/bveber/custom-container-dataproc-serverless). Hopefully, it will be merged
-into the source code as a resolution to [this issue](https://github.com/dbt-labs/dbt-bigquery/issues/642).
 
 ## `Data Science`
 
@@ -130,14 +97,9 @@ architectures, so unless you intend on using all of them (or at least the most c
 to perform testing and validation with darts, but in production it might make sense to use u8darts (the slimmed down version)
 or to remove the darts dependency and use only the required packages.
 
-### `Google Colab experimentation`
-
-Google Colab is a notebook environment that integrates nicely with BigQuery and other Google Cloud tools.
-This enables data scientists to query a common table or view and experiment with different modeling techniques
-in a standard Python runtime. In this project, Data Scientists are encouraged to experiment with different
-techniques at a small scale for a few store/product-category combinations before implementing the best solution in
-production. The nature of this problem makes it easy to translate code for 1 store/product-category into a function
-that can be applied across the entire dataset via pandas_udf.
+### `Python Worksheet experimentation`
+TBD. Preliminary thoughts are to use a python worksheet to perform initial experimentation with different
+model architectures and hyperparameters. This would be done on a small subset of the data, but would allow for quick iteration. 
 
 ### `pandas_udf`
 
